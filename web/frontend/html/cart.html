@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4J's Food Services</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- browser icon -->
+    <link rel="icon" href="../image/logo/logo1.png">
+</head>
+<body>
+
+ <section>
+    <nav>
+        <div class="logo">
+            <img src="../image/logo/logo2.png">
+        </div>
+
+        <div class="icon">
+            <ul>
+                <li><a href="index.html#Home">Home</a></li>
+                <li><a href="index.html#About">About</a></li>
+                <li><a href="index.html#Menu">Menu</a></li>
+            </ul>
+           
+            <form action="#" class="header-search-form for-des" onsubmit="showPopup(event)">
+                <input type="search" class="form-input" placeholder="Search Ref ID Here..." required>
+                <button type="submit" onclick="showPopup(event)">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form> 
+            
+           <div id="popupref" class="popup2">
+                <p id="popupContent"><h1>Here's your Order Status</h1>
+                    <br>
+                    <b class="reference-status">${status}</b>
+                    <br>
+                    <p class="reference-info">For more inquiries, please contact us and look for Maricel San Jose. <br> Thank you!</p>
+                <button type="button" onclick="closePopup2()">Close</button>
+            </div> 
+            <a href="cart.html" class="header-btn header-cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-number"></span>
+            </a>
+        </div>
+
+    </nav>
+    <div class="main" style="background-image: url(../image/bg/menu-bg.png);">
+
+        <div class="men_text" >
+            <h1>Cart </h1>
+        </div>
+
+    </div>
+</section>
+        
+    
+   
+
+        <div class="cart" style="background-image: url(../image/bg/menu-bg.png);">
+            <div class="sec-wp">
+                <div class="container"><br>
+                    
+    
+                        <!-- Cart -->
+            <div class="cart-form" id="addToCart">
+                
+                <div id="cart-items">
+                    
+                </div>
+                
+
+                <div class="cart-footer">
+                    <div class="cart-column"></div>
+                    <div class="cart-column"></div>
+                    <div class="cart-column"></div>
+                    <div class="cart-column"></div>
+                    <div class="cart-column"></div>
+                    <div id="totalPriceSection">
+                        <label><b>Total Price:</b></label>
+                        <span><b id="totalPrice">₱</b></span> <!-- Initial value, will be updated dynamically -->
+                    </div>
+                </div>
+            </div>
+        
+             <!-- Customer information form -->
+            <form id="customerForm" action="javascript:void(0)" method="post" class="Custform mx-auto text-center" style="background-image: url(../image/bg/bg2.png)" novalidate>
+                <h2 class="h2-title">Delivery Details</h2>
+            
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" required>
+                        <div id="firstNameErr" class="error-message">Please enter your first name.</div>
+                    </div>
+            
+                    <div class="form-group col-md-4">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" required>
+                        <div id="lastNameErr" class="error-message">Please enter your last name.</div>
+                    </div>
+                </div>
+            
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="contactNumber">Contact Number:</label>
+                        <input type="tel" id="contactNumber" required>
+                        <div id="contactNumberErr" class="error-message">Must start with 9 followed by 9 digits</div>
+                    </div>
+        
+                    <div class="form-group col-md-4">
+                        <label for="emailAddress">Email Address:</label>
+                        <input type="email" id="emailAddress" required>
+                        <div id="emailAddressErr" class="error-message">Please enter your email address.</div>
+                    </div>
+        
+                    <div class="form-group col-md-4">
+                        <label for="address">Complete Address:</label>
+                        <input type="text" id="address" required>
+                        <div id="addressErr" class="error-message">Please enter your address.</div>
+                    </div>
+                </div>
+            
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="deliveryDate">Date for Delivery:</label>
+                        <input type="date" id="deliveryDate" required>
+                        <div id="deliveryDateErr" class="error-message">Must be future date.</div>
+                    </div>
+        
+                    <div class="form-group col-md-4">
+                        <label for="deliveryTime">Time for Delivery:</label>
+                        <input type="time" id="deliveryTime" required>
+                        <div id="deliveryTimeErr" class="error-message">Must be between 8:00am - 8:00pm.</div>
+                    </div>
+            
+                    <div class="form-group col-md-4">
+                        <label for="paymentMode">Mode of Payment:</label>
+                        <select id="paymentMode" onchange="handlePaymentMode(event)" required>
+                            <option value="" selected disabled></option>
+                            <option value="cash">Cash</option>
+                            <option value="gcash">GCash</option>
+                        </select>
+                        <div id="paymentModeErr" class="error-message">Please select payment method.</div>
+                    </div>
+            
+                    <div class="form-group col-md-4">
+                        <label for="changeFor">Change For:</label>
+                        <input type="number" id="changeFor" required>
+                        <div id="changeForErr" class="error-message">Please enter an amount.</div>
+                    </div>
+                </div>
+            
+                <!-- <button type="submit" class="btn" onclick="validateForm()">Check Out</button> -->
+            <button type="submit" class="btn" onclick="checkout()">Check Out</button>
+                <div class="popup" id="popup">
+                    <h2>Successful</h2>
+                    <p>Reference id</p>
+                    <button type="button" onclick="closePopup()">OK</button>
+                </div>
+            </form>
+            
+            </div>
+            </div>
+        </div>
+
+
+      <!--Footer-->
+    <footer>
+        <div class="footer_main">
+
+            <div class="footer_tag">
+                <h2>Quick Link</h2>
+                <a href="index.html#Home"><p>Home</p></a>
+                <a href="index.html#About"><p>About</p></a>
+                <a href="index.html#Menu"><p>Menu</p></a>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Open Hours</h2>
+                <p>Mon - Sun : 08AM - 08PM</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Location</h2>
+                <p> <a href="https://rb.gy/37m63a"><i class="fas fa-map-marked-alt"></i></a> 201 M. Almeda St. Pateros, Metro Manila</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Contact</h2>
+                <ul>
+                    <p> <i class="fas fa-phone"></i>  +63 9641937421</p>
+                    <p> <i class="fas fa-envelope"></i>  maricelsnjs@gmail.com</p>
+                    <a href="https://www.facebook.com/kusinanimamacel"><i class="fa-brands fa-facebook-f"></i></a>
+                    
+                </ul>
+            </div>
+
+        </div>
+        <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+
+        <p class="end">Copyright &copy; 2023 <span><b><u>4J's Food Services</u></b></span></p>
+
+    </footer>
+
+
+
+    
+
+    <script>
+
+
+        let popup = document.getElementById("popup");
+    
+        function openPopup(referenceId) {
+            popup.classList.add("open-popup");
+            document.getElementById("popup").innerHTML = `
+                <h1>Ordered Successfully!</h1>
+                <br>
+                <p class="reference-pop">This is your Order Reference ID: ${referenceId}</p>
+                <br>
+                <p class="reference-pop">You can track your order status by searching your reference ID in the search bar. Thank you!</p>
+                <button type="button" class="btn-ok" onclick="closePopup()">OK</button>
+    
+                `;
+        }
+    
+        function closePopup() {
+            popup.classList.remove("open-popup");
+            window.location.href = "index.html";
+        }
+
+        function showPopup(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get a reference to the popup element
+        var popup = document.getElementById("popupref");
+
+        // Show the popup
+        if (popup) {
+            popup.style.display = "block";
+        }
+    }
+
+    // Function to close the popup
+    function closePopup2() {
+    var popup = document.querySelector("#popupref");
+    if (popup) {
+        popup.style.display = "none";
+    } else {
+        console.error("Popup element not found.");
+    }
+}
+    
+    
+        function handlePaymentMode() {
+            var paymentMode = document.getElementById('paymentMode').value;
+            var changeForField = document.getElementById('changeFor');
+    
+            if (paymentMode === 'gcash') {
+                changeForField.value = '';
+                changeForField.disabled = true;
+            } else {
+                changeForField.disabled = false;
+            }
+        }
+    
+        function validateForm() {
+            event.preventDefault();
+    
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var contactNumber = document.getElementById('contactNumber').value;
+            var emailAddress = document.getElementById('emailAddress').value;
+            var address = document.getElementById('address').value;
+            var deliveryDate = document.getElementById('deliveryDate').value;
+            var deliveryTime = document.getElementById('deliveryTime').value;
+            var paymentMode = document.getElementById('paymentMode').value;
+            var changeFor = document.getElementById('changeFor').value;
+    
+            document.getElementById("firstNameErr").style.display = "none";
+            document.getElementById("lastNameErr").style.display = "none";
+            document.getElementById("contactNumberErr").style.display = "none";
+            document.getElementById("emailAddressErr").style.display = "none";
+            document.getElementById("addressErr").style.display = "none";
+            document.getElementById("deliveryDateErr").style.display = "none";
+            document.getElementById("deliveryTimeErr").style.display = "none";
+            document.getElementById("paymentModeErr").style.display = "none";
+            document.getElementById("changeForErr").style.display = "none";
+    
+            let allValidationsPass = true; 
+    
+            if (firstName === '' || !nameRegex.test(firstName)) {
+                document.getElementById("firstNameErr").style.display = "block";
+                return false;
+            }
+            if (lastName === '' || !nameRegex.test(lastName)) {
+                document.getElementById("lastNameErr").style.display = "block";
+                return false;
+            }
+            if (contactNumber === '' || !contactNumberRegex.test(contactNumber)) {
+                document.getElementById("contactNumberErr").style.display = "block";
+                return false;
+            }
+            if (emailAddress === '' || !emailAddressRegex.test(emailAddress)) {
+                document.getElementById("emailAddressErr").style.display = "block";
+                return false;
+            }
+            if (address === '' || !addressRegex.test(address)) {
+                document.getElementById("addressErr").style.display = "block";
+                return false;
+            }
+            const currentDate = new Date().toISOString().split('T')[0];
+
+            if (deliveryDate === '') {
+                document.getElementById("deliveryDateErr").style.display = "block";
+                return false;
+            }
+            const selectedDate = new Date(deliveryDate).toISOString().split('T')[0];
+
+            if (selectedDate <= currentDate) {
+                document.getElementById("deliveryDateErr").style.display = "block";
+                return false;
+            }
+            if (
+                deliveryTime === '' || !timeRegex.test(deliveryTime)) {
+                document.getElementById("deliveryTimeErr").style.display = "block";
+                return false;
+            }
+            if (paymentMode === '') {
+                document.getElementById("paymentModeErr").style.display = "block";
+                return false;
+            }
+            if (paymentMode === 'cash' && changeFor === '') {
+                document.getElementById("changeForErr").style.display = "block";
+                return false;
+            }
+            if (allValidationsPass) {
+                fetch('http://localhost:8000/order/addOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                emailAddress: emailAddress,
+                contactNumber: contactNumber,
+                address: address,
+                deliveryDate: deliveryDate,
+                deliveryTime: deliveryTime,
+                paymentMode: paymentMode,
+                changeFor: changeFor
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                openPopup(data.referenceId);
+            } else {
+                alert('Error processing the order. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
+    }
+}
+
+
+        // Back to Top Button Functionality
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            var backToTopButton = document.getElementById("back-to-top-btn");
+
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    }
+    </script>
+
+<script src="../js/api_client.js"></script>
+<script src="../js/util.js"></script>
+<script src = "../js/cart.js"></script>
+<script src = "../js/moment.min.js"></script>
+<script src = "../js/checkout.js"></script>
+
+<script>
+    viewCart()
+</script>
+    
+</body>
+</html>

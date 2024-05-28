@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4J's Food Services</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- browser icon -->
+    <link rel="icon" href="../image/logo/logo1.png">
+</head>
+<body>
+
+    <section id="Home">
+        <nav>
+            <div class="logo">
+                <img src="../image/logo/logo2.png">
+            </div>
+
+            <div class="icon">
+                <ul>
+                    <li><a href="#Home">Home</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#Menu">Menu</a></li>
+                </ul>
+               
+                <form action="#" class="header-search-form for-des" onsubmit="showPopup(event)">
+                    <input type="search" class="form-input" placeholder="Search Ref ID Here..." required>
+                    <button type="submit" onclick="showPopup(event)">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form> 
+                
+               <div id="popupref" class="popup2">
+                    <p id="popupContent"><h1>Here's your Order Status</h1>
+                        <br>
+                        <b class="reference-status">${status}</b>
+                        <br>
+                        <p class="reference-info">For more inquiries, please contact us and look for Maricel San Jose. <br> Thank you!</p>
+                    <button type="button" onclick="closePopup()">Close</button>
+                </div>
+                <a href="cart.html" class="header-btn header-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-number"></span>
+                </a>
+            </div>
+
+        </nav>
+
+        <div class="main" style="background-image: url(../image/bg/bg2.png);">
+
+            <div class="men_text">
+                <h1>Welcome to<br> <span>4j's</span> Food <br>Services </h1>
+            </div>
+
+        </div>
+
+        <div class="main_btn">
+            <a href="#Menu">Order Now</a>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+
+    </section>
+
+
+
+    <div class="about" id="About" style="background-image: url(../image/bg/menu-bg.png);">
+        <div class="about_main">
+
+            <div class="image">
+                <img src="../image/logo/logo3.png">
+            </div>
+
+            <div class="about_text">
+                <h1><span>About</span>Us</h1>
+                <h3>Discover <span>4J's Food Services story</h3>
+                <p>
+                    4J's Food Services is a family business owned by Maricel San Jose. It was established in 2022. 
+                    Maricel San Jose has a strong passion for cooking, so she and her family decided to start a small business. 
+                    They don't have a physical store or restaurant for customers to dine in, but their home serves as their store, where they prepare all customer orders. 
+                    All the dishes they cook are exclusively delivered by them. 
+                    The name "4J's" comes from her four children, whose names all start with the letter J. Everything offered by 4J's Food Services is available for all four meals (breakfast, lunch, snack, and dinner). 
+                    They have a party tray that's perfect for all occasions and bento boxes that are a great deal because they include a main dish and a side dish.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--Popular-->
+
+    <div class="Popular" id="Popular" style="background-image: url(../image/bg/bg2.png);">
+        <h1>Best<span>Sellers</span></h1>
+
+        <div class="Popular_image_box" id="popularContainer">
+
+        </div>
+
+    </div>
+
+
+
+
+    <!--Menu-->
+
+    <div class="menu" id="Menu" style="background-image: url(../image/bg/menu-bg.png);">
+        <h1>Our<span>Menu</span></h1>
+    
+        <!-- Filter buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn" onclick="getMenuByCategory('all')">All</button>
+            <button class="filter-btn" onclick="getMenuByCategory('noodle')">Noodle Dishes</button>
+            <button class="filter-btn" onclick="getMenuByCategory('pork')">Pork Dishes</button>
+            <button class="filter-btn" onclick="getMenuByCategory('chicken')">Chicken Dishes</button>
+            <button class="filter-btn" onclick="getMenuByCategory('veg')">Vegetable Dishes</button>
+            <button class="filter-btn" onclick="getMenuByCategory('bento')">Bento</button>
+        </div>
+    
+        <div class="menu_box" id="menu-dish">
+           
+        </div>
+        <script>
+            function filterMenu(category) {
+                const menuItems = document.querySelectorAll('.menu_card');
+    
+                menuItems.forEach((item) => {
+                    const itemCategory = item.getAttribute('data-category');
+    
+                    if (category === 'all' || category === itemCategory) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+        </script>
+    </div>
+
+    <!--Footer-->
+    <footer>
+        <div class="footer_main">
+
+            <div class="footer_tag">
+                <h2>Quick Link</h2>
+                <a href="#Home"><p>Home</p></a>
+                <a href="#About"><p>About</p></a>
+                <a href="#Menu"><p>Menu</p></a>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Open Hours</h2>
+                <p>Mon - Sun : 08AM - 08PM</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Location</h2>
+                <p> <a href="https://rb.gy/37m63a"><i class="fas fa-map-marked-alt"></i></a> 201 M. Almeda St. Pateros, Metro Manila</p>
+            </div>
+
+            <div class="footer_tag">
+                <h2>Contact</h2>
+                <ul>
+                    <p> <i class="fas fa-phone"></i>  +63 9641937421</p>
+                    <p> <i class="fas fa-envelope"></i>  maricelsnjs@gmail.com</p>
+                    <a href="https://www.facebook.com/kusinanimamacel"><i class="fa-brands fa-facebook-f"></i></a>
+                    
+                </ul>
+            </div>
+
+        </div>
+        <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+
+        <p class="end">Copyright &copy; 2023 <span><b><u>4J's Food Services</u></b></span></p>
+
+    </footer>
+
+
+
+    <script>
+        function incrementQuantity() {
+            var quantityInput = document.getElementById("quantity");
+            var currentQuantity = parseInt(quantityInput.value, 10);
+            quantityInput.value = currentQuantity + 1;
+        }
+
+        function decrementQuantity() {
+            var quantityInput = document.getElementById("quantity");
+            var currentQuantity = parseInt(quantityInput.value, 10);
+            if (currentQuantity > 1) {
+                quantityInput.value = currentQuantity - 1;
+            }
+        }
+
+        //popup
+    function showPopup(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get a reference to the popup element
+        var popup = document.getElementById("popupref");
+
+        // Show the popup
+        if (popup) {
+            popup.style.display = "block";
+        }
+    }
+
+    // Function to close the popup
+    function closePopup() {
+    var popup = document.querySelector("#popupref");
+    if (popup) {
+        popup.style.display = "none";
+    } else {
+        console.error("Popup element not found.");
+    }
+}
+
+        // Back to Top Button Functionality
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            var backToTopButton = document.getElementById("back-to-top-btn");
+
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    }
+    </script>
+
+<script src="../js/api_client.js"></script>
+<script src="../js/index.js"></script>
+<script src="../js/cart.js"></script>
+    
+</body>
+</html>
